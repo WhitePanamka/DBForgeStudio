@@ -42,6 +42,34 @@ public partial class MainWindow : Window
         Closing += (_, _) => { if (_connection is not null) _connection.Dispose(); };
     }
 
+
+    // UI-only theme switching. This changes presentation resources and does not touch database logic.
+    private void LightTheme_Click(object sender, RoutedEventArgs e) => ApplyTheme(false);
+
+    private void DarkTheme_Click(object sender, RoutedEventArgs e) => ApplyTheme(true);
+
+    private void ApplyTheme(bool dark)
+    {
+        SetThemeBrush("AppBackgroundBrush", dark ? "#111827" : "#F3F6FB");
+        SetThemeBrush("SurfaceBrush", dark ? "#1B2435" : "#FFFFFF");
+        SetThemeBrush("PanelBrush", dark ? "#242F43" : "#F8FAFC");
+        SetThemeBrush("PrimaryTextBrush", dark ? "#E5EAF3" : "#172033");
+        SetThemeBrush("SecondaryTextBrush", dark ? "#A8B4C8" : "#64748B");
+        SetThemeBrush("BorderBrush", dark ? "#354258" : "#DCE3ED");
+        SetThemeBrush("AccentBrush", dark ? "#6366F1" : "#4F46E5");
+        SetThemeBrush("AccentHoverBrush", dark ? "#818CF8" : "#4338CA");
+        SetThemeBrush("InputBrush", dark ? "#172033" : "#FFFFFF");
+        SetThemeBrush("GridAlternateBrush", dark ? "#202B3E" : "#F8FAFC");
+        Background = (System.Windows.Media.Brush)FindResource("AppBackgroundBrush");
+        StatusText.Text = dark ? "Включена тёмная тема." : "Включена светлая тема.";
+    }
+
+    private void SetThemeBrush(string key, string color)
+    {
+        Resources[key] = new System.Windows.Media.SolidColorBrush(
+            (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(color));
+    }
+
     private SqlConnectionStringBuilder BuildConnectionString(bool includeDatabase = false)
     {
         int port = 1433;

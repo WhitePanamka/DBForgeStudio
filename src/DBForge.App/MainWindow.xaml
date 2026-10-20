@@ -1,12 +1,136 @@
-<Window x:Class="DBForge.App.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="DBForge Studio" Height="850" Width="1320" MinHeight="680" MinWidth="1000" WindowStartupLocation="CenterScreen" Background="#F3F6FA">
+<Window x:Class="DBForge.App.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="DBForge Studio" Height="850" Width="1320" MinHeight="680" MinWidth="1000" WindowStartupLocation="CenterScreen" Background="{DynamicResource AppBackgroundBrush}" Foreground="{DynamicResource PrimaryTextBrush}" FontFamily="Segoe UI" FontSize="13">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AppBackgroundBrush" Color="#F3F6FB"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="PanelBrush" Color="#F8FAFC"/>
+        <SolidColorBrush x:Key="PrimaryTextBrush" Color="#172033"/>
+        <SolidColorBrush x:Key="SecondaryTextBrush" Color="#64748B"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#DCE3ED"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#4F46E5"/>
+        <SolidColorBrush x:Key="AccentHoverBrush" Color="#4338CA"/>
+        <SolidColorBrush x:Key="InputBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="GridAlternateBrush" Color="#F8FAFC"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="13,8"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="7" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource AccentHoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource InputBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,7"/>
+            <Setter Property="Margin" Value="0,3,0,7"/>
+        </Style>
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="{DynamicResource InputBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="Padding" Value="8,7"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="{DynamicResource InputBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="Padding" Value="6,5"/>
+        </Style>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextBrush}"/>
+            <Setter Property="Padding" Value="14,10"/>
+            <Setter Property="Margin" Value="2,2,3,0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="TabBorder" Background="Transparent" CornerRadius="7,7,0,0" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource AccentBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder" Property="Opacity" Value="0.88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="AlternatingRowBackground" Value="{DynamicResource GridAlternateBrush}"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="RowHeight" Value="34"/>
+            <Setter Property="ColumnHeaderHeight" Value="38"/>
+        </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="{DynamicResource PanelBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="Padding" Value="10,6"/>
+        </Style>
+        <Style TargetType="{x:Type StatusBar}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        </Style>
+    </Window.Resources>
+
     <DockPanel>
-        <Border DockPanel.Dock="Top" Background="#111827" Padding="22,16">
+        <Border DockPanel.Dock="Top" Background="#171C2E" Padding="22,16">
             <DockPanel>
                 <StackPanel>
                     <TextBlock Text="DBForge Studio" Foreground="White" FontSize="23" FontWeight="SemiBold"/>
                     <TextBlock Text="Проектирование схем, генерация SQL и работа с MS SQL Server" Foreground="#CBD5E1" Margin="0,4,0,0"/>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="☀ Светлая" Click="LightTheme_Click" Background="#E8ECF5" Foreground="#25304A" Margin="0,0,6,0" Padding="11,8" ToolTip="Включить светлую тему"/>
+                    <Button Content="☾ Тёмная" Click="DarkTheme_Click" Background="#3730A3" Foreground="White" Margin="0,0,14,0" Padding="11,8" ToolTip="Включить тёмную тему"/>
                     <TextBlock x:Name="ConnectionBadge" Text="● Не подключено" Foreground="#FCA5A5" VerticalAlignment="Center" Margin="0,0,18,0"/>
                     <Button Content="Новый проект" Click="NewProject_Click" Padding="14,8" Margin="0,0,8,0"/>
                     <Button Content="Открыть" Click="OpenProject_Click" Padding="14,8" Margin="0,0,8,0"/>
@@ -19,26 +143,26 @@
                 <TextBlock x:Name="StatusText" Text="Готово. Подключите SQL Server или создайте схему локально."/>
             </StatusBarItem>
         </StatusBar>
-        <TabControl x:Name="MainTabs" Margin="18" Background="White">
+        <TabControl x:Name="MainTabs" Margin="18" Background="{DynamicResource SurfaceBrush}">
             <TabItem Header="Главная">
                 <ScrollViewer>
                     <StackPanel Margin="26" MaxWidth="950" HorizontalAlignment="Left">
                         <TextBlock Text="Рабочее пространство проекта" FontSize="27" FontWeight="SemiBold"/>
-                        <TextBlock Text="Единый MVP: проект, подключение к MS SQL Server, конструктор схемы, SQL-генератор, просмотр данных и базовые правила проверки." TextWrapping="Wrap" Margin="0,10,0,22" FontSize="14" Foreground="#475569"/>
+                        <TextBlock Text="Единый MVP: проект, подключение к MS SQL Server, конструктор схемы, SQL-генератор, просмотр данных и базовые правила проверки." TextWrapping="Wrap" Margin="0,10,0,22" FontSize="14" Foreground="{DynamicResource SecondaryTextBrush}"/>
                         <UniformGrid Columns="3">
-                            <Border Background="#EFF6FF" Padding="18" Margin="0,0,12,0" CornerRadius="8">
+                            <Border Background="{DynamicResource PanelBrush}" Padding="18" Margin="0,0,12,0" CornerRadius="8">
                                 <StackPanel>
                                     <TextBlock Text="ПРОЕКТ" Foreground="#1D4ED8"/>
                                     <TextBlock x:Name="ProjectNameLabel" Text="Новый проект" FontSize="19" FontWeight="SemiBold" Margin="0,8,0,0"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="#F0FDF4" Padding="18" Margin="0,0,12,0" CornerRadius="8">
+                            <Border Background="{DynamicResource PanelBrush}" Padding="18" Margin="0,0,12,0" CornerRadius="8">
                                 <StackPanel>
                                     <TextBlock Text="СХЕМА" Foreground="#166534"/>
                                     <TextBlock x:Name="EntityCountLabel" Text="0 сущностей" FontSize="19" FontWeight="SemiBold" Margin="0,8,0,0"/>
                                 </StackPanel>
                             </Border>
-                            <Border Background="#FFF7ED" Padding="18" CornerRadius="8">
+                            <Border Background="{DynamicResource PanelBrush}" Padding="18" CornerRadius="8">
                                 <StackPanel>
                                     <TextBlock Text="СУБД" Foreground="#9A3412"/>
                                     <TextBlock x:Name="DatabaseLabel" Text="SQL Server / localhost" FontSize="19" FontWeight="SemiBold" Margin="0,8,0,0"/>
@@ -46,7 +170,7 @@
                             </Border>
                         </UniformGrid>
                         <TextBlock Text="Порядок работы" FontSize="19" FontWeight="SemiBold" Margin="0,28,0,12"/>
-                        <TextBlock Text="1. Настройте подключение к localhost:1433.  2. Создайте сущности и поля.  3. Проверьте модель.  4. Просмотрите и сохраните SQL.  5. Применяйте скрипт только к тестовой базе после проверки." TextWrapping="Wrap" FontSize="14" Foreground="#334155"/>
+                        <TextBlock Text="1. Настройте подключение к localhost:1433.  2. Создайте сущности и поля.  3. Проверьте модель.  4. Просмотрите и сохраните SQL.  5. Применяйте скрипт только к тестовой базе после проверки." TextWrapping="Wrap" FontSize="14" Foreground="{DynamicResource PrimaryTextBrush}"/>
                         <TextBlock Text="Важно: первая версия не заменяет резервное копирование и ручную проверку миграций. Перед применением DDL убедитесь, что выбрана тестовая база." TextWrapping="Wrap" Margin="0,18,0,0" Foreground="#B45309"/>
                     </StackPanel>
                 </ScrollViewer>
@@ -135,7 +259,7 @@
                 <DockPanel Margin="18">
                     <StackPanel DockPanel.Dock="Top">
                         <TextBlock Text="Генерация SQL для MS SQL Server" FontSize="22" FontWeight="SemiBold"/>
-                        <TextBlock Text="Скрипт создаёт таблицы, первичные ключи, уникальные ограничения и внешние ключи из модели." Margin="0,7,0,12" Foreground="#475569"/>
+                        <TextBlock Text="Скрипт создаёт таблицы, первичные ключи, уникальные ограничения и внешние ключи из модели." Margin="0,7,0,12" Foreground="{DynamicResource SecondaryTextBrush}"/>
                         <StackPanel Orientation="Horizontal">
                             <Button Content="Сгенерировать SQL" Click="GenerateSql_Click" Padding="12,8" Margin="0,0,8,0"/>
                             <Button Content="Сохранить .sql" Click="ExportSql_Click" Padding="12,8" Margin="0,0,8,0"/>
@@ -156,7 +280,7 @@
                             <Button Content="Загрузить / найти" Click="LoadData_Click" Padding="12,7" Margin="0,0,8,0"/>
                             <Button Content="Добавить запись" Click="InsertRow_Click" Padding="12,7"/>
                         </StackPanel>
-                        <TextBlock Text="Для первой версии редактирование выполняется добавлением записи; изменение и удаление записей добавляются после проверки основной модели." Foreground="#64748B" Margin="0,0,0,8"/>
+                        <TextBlock Text="Для первой версии редактирование выполняется добавлением записи; изменение и удаление записей добавляются после проверки основной модели." Foreground="{DynamicResource SecondaryTextBrush}" Margin="0,0,0,8"/>
                     </StackPanel>
                     <DataGrid x:Name="DataGridView" AutoGenerateColumns="True" IsReadOnly="True" CanUserAddRows="False" Margin="0,8,0,0"/>
                 </DockPanel>
