@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.12.12308.306 insiders
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBForge.App", "src\DBForge.App\DBForge.App.csproj", "{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBForge.Domain", "src\DBForge.Domain\DBForge.Domain.csproj", "{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBForge.Application", "src\DBForge.Application\DBForge.Application.csproj", "{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBForge.Infrastructure", "src\DBForge.Infrastructure\DBForge.Infrastructure.csproj", "{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111004}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9C37F11-BC7E-4B6D-9E5E-9B4D2C111004}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

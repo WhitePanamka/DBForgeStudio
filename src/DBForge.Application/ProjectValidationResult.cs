@@ -1,0 +1,1 @@
+namespace DBForge.Application; public sealed record ProjectValidationResult(bool IsValid, IReadOnlyList<string> Errors) { public static ProjectValidationResult Success() => new(true, Array.Empty<string>()); public static ProjectValidationResult Failure(params string[] errors) => new(false, errors); }
